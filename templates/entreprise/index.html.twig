@@ -6,7 +6,8 @@
     <h1>Liste des entreprises</h1>
 
     {% for entreprise in entreprises %}
-        <b>{{ entreprise.raisonSociale }}</b>{{ ' (' ~entreprise.cp~' '~entreprise.ville~') ' }} <br>
+        {# <a href=""><b>{{ entreprise.raisonSociale }}</b>{{ ' (' ~entreprise.cp~' '~entreprise.ville~') ' }} </a><br> #}
+        <a href="{{path('show_entreprise', {'id': entreprise.id} )}}"><b>{{ entreprise.raisonSociale }}</b></a><br>
         {# <b>{{ entreprise }}</b><br> Si __toString #}
     {% endfor %}
 
