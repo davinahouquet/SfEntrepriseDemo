@@ -50,8 +50,9 @@ INSERT INTO `employe` (`id`, `entreprise_id`, `nom`, `prenom`, `date_naissance`,
 	(1, 1, 'SMAIL', 'Stephane', '1975-09-17 15:27:11', '2019-09-17 15:27:25', NULL),
 	(2, 1, 'MATHIEU', 'Quentin', '1989-09-17 15:27:57', '2022-09-17 15:28:12', NULL),
 	(3, 1, 'MURMANN', 'Mickael', '1985-09-17 15:28:36', '2010-09-17 15:28:59', NULL),
-	(4, 2, 'ANDRES', 'Mathilde', '1987-09-17 15:29:28', '2003-09-17 15:29:34', NULL),
-	(5, 2, 'DUPONT', 'Corinne', '1998-05-02 00:00:00', '2021-09-15 00:00:00', 'COLMAR');
+	(4, 2, 'ANDRES', 'Mathilde', '1987-09-17 00:00:00', '2003-09-17 00:00:00', 'PHALSBOURG'),
+	(5, 2, 'DUPONT', 'Corinne', '1998-05-02 00:00:00', '2021-09-15 00:00:00', 'COLMAR'),
+	(9, 1, 'TEST', 'test', '1987-05-01 00:00:00', '2003-05-01 00:00:00', NULL);
 
 -- Listage de la structure de table sfentreprisedemo. entreprise
 CREATE TABLE IF NOT EXISTS `entreprise` (
@@ -66,8 +67,8 @@ CREATE TABLE IF NOT EXISTS `entreprise` (
 
 -- Listage des données de la table sfentreprisedemo.entreprise : ~4 rows (environ)
 INSERT INTO `entreprise` (`id`, `raison_sociale`, `date_creation`, `adresse`, `cp`, `ville`) VALUES
-	(1, 'ELANFORMATION', '1993-07-10 11:31:03', '14 rue du rhône', '67100', 'STRASBOURG'),
-	(2, 'COACTIS', '2015-09-17 14:19:40', '10 rue de la Charmille', '67200', 'STRASBOURG'),
+	(1, 'ELANFORMATION', '1993-07-10 00:00:00', '202 Avenue de Colmar', '67100', 'STRASBOURG'),
+	(2, 'COACTIS', '2015-09-17 00:00:00', '10 route des Romains', '67200', 'STRASBOURG'),
 	(3, 'ENTREPRISE', '2023-09-17 14:20:09', '1 rue de Paris', '67000', 'COLMAR'),
 	(4, 'MON ENTREPRISE', '2002-01-01 00:00:00', '10 Rue du Marais', '67000', 'STRASBOURG');
 
