@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
+
 
 class EntrepriseController extends AbstractController
 {
@@ -51,7 +53,8 @@ class EntrepriseController extends AbstractController
         ]);
     }
     
-    #[Route('/entreprise/{id}/delete', name: 'delete_entreprise')]
+
+    #[Route('/admin/entreprise/{id}/delete', name: 'delete_entreprise')]
     public function delete(Entreprise $entreprise, EntityManagerInterface $entityManager)
     {
         $entityManager->remove($entreprise);

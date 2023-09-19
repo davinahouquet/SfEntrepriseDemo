@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Listage des données de la table sfentreprisedemo.doctrine_migration_versions : ~1 rows (environ)
+-- Listage des données de la table sfentreprisedemo.doctrine_migration_versions : ~0 rows (environ)
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20230917102920', '2023-09-17 10:30:08', 149);
 
@@ -40,19 +40,26 @@ CREATE TABLE IF NOT EXISTS `employe` (
   `date_naissance` datetime DEFAULT NULL,
   `date_embauche` datetime NOT NULL,
   `ville` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `employeur_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_F804D3B9A4AEAFEA` (`entreprise_id`),
   CONSTRAINT `FK_F804D3B9A4AEAFEA` FOREIGN KEY (`entreprise_id`) REFERENCES `entreprise` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfentreprisedemo.employe : ~5 rows (environ)
-INSERT INTO `employe` (`id`, `entreprise_id`, `nom`, `prenom`, `date_naissance`, `date_embauche`, `ville`) VALUES
-	(1, 1, 'SMAIL', 'Stephane', '1975-09-17 15:27:11', '2019-09-17 15:27:25', NULL),
-	(2, 1, 'MATHIEU', 'Quentin', '1989-09-17 15:27:57', '2022-09-17 15:28:12', NULL),
-	(3, 1, 'MURMANN', 'Mickael', '1985-09-17 15:28:36', '2010-09-17 15:28:59', NULL),
-	(4, 2, 'ANDRES', 'Mathilde', '1987-09-17 00:00:00', '2003-09-17 00:00:00', 'PHALSBOURG'),
-	(5, 2, 'DUPONT', 'Corinne', '1998-05-02 00:00:00', '2021-09-15 00:00:00', 'COLMAR'),
-	(9, 1, 'TEST', 'test', '1987-05-01 00:00:00', '2003-05-01 00:00:00', NULL);
+-- Listage des données de la table sfentreprisedemo.employe : ~0 rows (environ)
+
+-- Listage de la structure de table sfentreprisedemo. employeur
+CREATE TABLE IF NOT EXISTS `employeur` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nom` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prenom` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date_naissance` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Listage des données de la table sfentreprisedemo.employeur : ~1 rows (environ)
+INSERT INTO `employeur` (`id`, `nom`, `prenom`, `date_naissance`) VALUES
+	(1, 'DUPONT', 'Jean', '1960-09-19 16:36:42');
 
 -- Listage de la structure de table sfentreprisedemo. entreprise
 CREATE TABLE IF NOT EXISTS `entreprise` (
@@ -63,14 +70,13 @@ CREATE TABLE IF NOT EXISTS `entreprise` (
   `cp` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `ville` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sfentreprisedemo.entreprise : ~4 rows (environ)
+-- Listage des données de la table sfentreprisedemo.entreprise : ~3 rows (environ)
 INSERT INTO `entreprise` (`id`, `raison_sociale`, `date_creation`, `adresse`, `cp`, `ville`) VALUES
-	(1, 'ELANFORMATION', '1993-07-10 00:00:00', '202 Avenue de Colmar', '67100', 'STRASBOURG'),
-	(2, 'COACTIS', '2015-09-17 00:00:00', '10 route des Romains', '67200', 'STRASBOURG'),
 	(3, 'ENTREPRISE', '2023-09-17 14:20:09', '1 rue de Paris', '67000', 'COLMAR'),
-	(4, 'MON ENTREPRISE', '2002-01-01 00:00:00', '10 Rue du Marais', '67000', 'STRASBOURG');
+	(4, 'MON ENTREPRISE', '2002-01-01 00:00:00', '10 Rue du Marais', '67000', 'STRASBOURG'),
+	(7, 'TESTcccccccccccc', '2023-09-16 00:00:00', 'ccccccc', 'ccccc', 'cccc');
 
 -- Listage de la structure de table sfentreprisedemo. messenger_messages
 CREATE TABLE IF NOT EXISTS `messenger_messages` (
@@ -88,6 +94,21 @@ CREATE TABLE IF NOT EXISTS `messenger_messages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sfentreprisedemo.messenger_messages : ~0 rows (environ)
+
+-- Listage de la structure de table sfentreprisedemo. user
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `roles` json NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Listage des données de la table sfentreprisedemo.user : ~2 rows (environ)
+INSERT INTO `user` (`id`, `email`, `roles`, `password`) VALUES
+	(1, 'admin@admin.fr', '["ROLE_ADMIN"]', '$2y$13$km3oTzYCKPqzPane/GMIs.NhArJO3/QToEYNJ0nUy8thNRwB9P9fq'),
+	(2, 'retest@test.fr', '[]', '$2y$13$UF0t4Sbml2woYfmVzFhvhecNvitbGXc.SFCT2J5i5Jrgyo/bwo/oK');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

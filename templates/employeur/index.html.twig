@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des employeurs{% endblock %}
+
+{% block body %}
+    <h1>Liste des employeurs</h1>
+
+    <a class="btn btn-success" href="{{path('new_entreprise')}}">Ajouter une entreprise</a><br>
+
+    {% for employeur in employeurs %}
+        
+        {{ employeur.nom }}
+
+        
+    {% endfor %}
+
+{% endblock %}

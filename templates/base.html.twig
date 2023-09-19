@@ -21,6 +21,7 @@
                     {% if is_granted('ROLE_ADMIN') %}
                         <li><a href="{{ path('new_entreprise')}}">Ajouter une entreprise</a></li>
                         <li><a href="{{ path('new_employe')}}">Ajouter un employé</a></li>
+                        <li><a href="{{path('app_employeur')}}">Liste des employeurs</a></li>
                     {% endif %}
                 {% else %}
                     <li><a href="{{path('app_login')}}">Se connecter</a></li>
