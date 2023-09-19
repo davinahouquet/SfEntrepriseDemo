@@ -33,6 +33,10 @@ class Employe
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $ville = null;
 
+    #[ORM\ManyToOne(inversedBy: 'employes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Employeur $employeur = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,5 +124,17 @@ class Employe
         $now = new \DateTime();
         $interval = $this->dateNaissance->diff($now);
         return $interval->format('%Y');
+    }
+
+    public function getEmployeur(): ?Employeur
+    {
+        return $this->employeur;
+    }
+
+    public function setEmployeur(?Employeur $employeur): static
+    {
+        $this->employeur = $employeur;
+
+        return $this;
     }
 }

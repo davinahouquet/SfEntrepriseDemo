@@ -12,6 +12,11 @@
     <body>
         <nav>
             <ul>
+                <li><a href="{{path('app_home')}}">Accueil</a></li>
+                <li><a>Se connecter</a></li>
+                <li><a href="{{path('app_register')}}">S'enregistrer</a></li>
+
+                <li><a>Se déconnecter</a></li>
                 {# Pour les liens, c'est le name dans le controller qui est attendu #}
                 <li><a href="{{ path('app_entreprise')}}">Liste des entreprises</a></li>
                 <li><a href="{{ path('app_employe')}}">Liste des employés</a></li>
