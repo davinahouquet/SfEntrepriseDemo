@@ -13,15 +13,23 @@
         <nav>
             <ul>
                 <li><a href="{{path('app_home')}}">Accueil</a></li>
-                <li><a>Se connecter</a></li>
-                <li><a href="{{path('app_register')}}">S'enregistrer</a></li>
 
-                <li><a>Se déconnecter</a></li>
-                {# Pour les liens, c'est le name dans le controller qui est attendu #}
-                <li><a href="{{ path('app_entreprise')}}">Liste des entreprises</a></li>
-                <li><a href="{{ path('app_employe')}}">Liste des employés</a></li>
-                <li><a href="{{ path('new_entreprise')}}">Ajouter une entreprise</a></li>
-                <li><a href="{{ path('new_employe')}}">Ajouter un employé</a></li>
+                {% if app.user %}
+                    <li><a href="{{path('app_logout')}}">Se déconnecter</a></li>
+                    <li><a href="{{ path('app_entreprise')}}">Liste des entreprises</a></li>
+                    <li><a href="{{ path('app_employe')}}">Liste des employés</a></li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li><a href="{{ path('new_entreprise')}}">Ajouter une entreprise</a></li>
+                        <li><a href="{{ path('new_employe')}}">Ajouter un employé</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="{{path('app_login')}}">Se connecter</a></li>
+                    <li><a href="{{path('app_register')}}">S'enregistrer</a></li>  
+                {% endif %}
+
+                
+     
+                
             </ul>
         </nav>
         <main class="container">

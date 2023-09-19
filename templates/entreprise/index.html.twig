@@ -11,8 +11,12 @@
         {# <a href=""><b>{{ entreprise.raisonSociale }}</b>{{ ' (' ~entreprise.cp~' '~entreprise.ville~') ' }} </a><br> #}
         <a href="{{path('show_entreprise', {'id': entreprise.id} )}}"><b>{{ entreprise.raisonSociale }}</b></a>
         {# <b>{{ entreprise }}</b><br> Si __toString #}
-        <a class="btn btn-warning" href="{{path('edit_entreprise', {'id' : entreprise.id})}}">Edit</a>
-        <a  class="btn btn-danger" href="{{path('delete_entreprise', {'id' : entreprise.id})}}">X</a><br>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-warning" href="{{path('edit_entreprise', {'id' : entreprise.id})}}">Edit</a>
+            <a  class="btn btn-danger" href="{{path('delete_entreprise', {'id' : entreprise.id})}}">X</a><br>
+        {% endif %}
+        
     {% endfor %}
 
 {% endblock %}

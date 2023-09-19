@@ -9,7 +9,11 @@
 
     {% for employe in employes %}
         <a href="{{ path('show_employe', {'id':employe.id}) }}">{{ employe }}</a>
-        <a  class="btn btn-warning" href="{{path('edit_employe', {'id' : employe.id})}}">Edit</a>
-        <a  class="btn btn-danger" href="{{path('delete_employe', {'id' : employe.id})}}">X</a><br>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <a  class="btn btn-warning" href="{{path('edit_employe', {'id' : employe.id})}}">Edit</a>
+            <a  class="btn btn-danger" href="{{path('delete_employe', {'id' : employe.id})}}">X</a><br>
+        {% endif %}
+        
     {% endfor %}
 {% endblock %}
