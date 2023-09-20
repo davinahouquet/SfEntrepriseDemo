@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\EmployeurRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EmployeurRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: EmployeurRepository::class)]
 class Employeur
@@ -23,7 +24,7 @@ class Employeur
     private ?string $prenom = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $dateNaissance = null;
+    private ?DateTimeInterface $dateNaissance = null;
 
     #[ORM\OneToMany(mappedBy: 'employeur', targetEntity: Employe::class)]
     private Collection $employes;
@@ -102,5 +103,10 @@ class Employeur
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->nom." ".$this->prenom;
     }
 }

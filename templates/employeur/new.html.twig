@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un employeur{% endblock %}
+
+{% block body %}
+
+   
+        <h1>Ajouter un employeur</h1>
+   
+
+    {{ form_start(formAddEmployeur) }}
+
+        <div class="row">
+            <div class="col-sm">
+                {{ form_row(formAddEmployeur.nom)}}    
+            </div>
+            <div class="col-sm">
+                {{ form_row(formAddEmployeur.prenom)}}    
+            </div>
+            <div class="col-sm">
+                {{ form_row(formAddEmployeur.dateNaissance)}}    
+            </div>
+    </div>
+        {{ form_row(formAddEmployeur.valider)}}    
+    {{ form_end(formAddEmployeur) }}
+
+{% endblock %}

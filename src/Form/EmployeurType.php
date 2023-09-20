@@ -2,18 +2,15 @@
 
 namespace App\Form;
 
-use App\Entity\Employe;
 use App\Entity\Employeur;
-use App\Entity\Entreprise;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class EmployeType extends AbstractType
+class EmployeurType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -34,30 +31,6 @@ class EmployeType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('dateEmbauche', DateType::class, [
-                'widget' => 'single_text',
-                'attr' => [
-                    'class' => 'form-control'
-                ]
-            ])
-            ->add('ville', TextType::class, [
-                'required' => false,
-                'attr' => [
-                    'class' => 'form-control'
-                ]
-            ])
-            ->add('entreprise', EntityType::class, [
-                'class' => Entreprise::class, 
-                'attr' => [
-                    'class' => 'form-control'
-                ]
-            ])
-            ->add('employeur', EntityType::class,[
-                'class'=>Employeur::class,
-                'attr' => [
-                    'class' => 'form-control'
-                ]
-            ])
             ->add('valider', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-success'
@@ -69,7 +42,7 @@ class EmployeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Employe::class,
+            'data_class' => Employeur::class,
         ]);
     }
 }
