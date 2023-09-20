@@ -8,11 +8,13 @@
     <a class="btn btn-success" href="{{path('new_employeur')}}">Ajouter un employeur</a><br>
 
     {% for employeur in employeurs %}
-        {{ employeur.nom }}
-        {{ employeur.prenom }}
+        <a href="{{path('show_employeur', {'id':employeur.id})}}">{{ employeur.nom }} {{ employeur.prenom }}</a><br>
+        
+        {% if is_granted('ROLE_ADMIN') %}
         <a href="{{path('edit_employeur', {'id':employeur.id})}}">Edit</a>
         <a href="{{path('delete_employeur', {'id':employeur.id})}}">Delete</a>
         <br>
+        {% endif %}
         
     {% endfor %}
 

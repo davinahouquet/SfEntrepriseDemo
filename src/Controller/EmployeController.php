@@ -49,7 +49,7 @@ class EmployeController extends AbstractController
         ]);
     }
 
-    #[Route('/employe/{id}/delete', name: 'delete_employe')]
+    #[Route('/admin/employe/{id}/delete', name: 'delete_employe')]
     public function delete(Employe $employe, EntityManagerInterface $entityManager)
     {
         $entityManager->remove($employe);

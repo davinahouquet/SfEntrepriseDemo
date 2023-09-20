@@ -22,8 +22,8 @@ class EmployeurController extends AbstractController
         ]);
     }
 
-    #[Route('/employeur/new', name: 'new_employeur')]
-    #[Route('/employeur/{id}/edit', name: 'edit_employeur')]
+    #[Route('/admin/employeur/new', name: 'new_employeur')]
+    #[Route('/admin/employeur/{id}/edit', name: 'edit_employeur')]
     public function new_edit(Employeur $employeur = null, Request $request, EntityManagerInterface $entityManager): Response
     {
         if(!$employeur){
@@ -49,12 +49,20 @@ class EmployeurController extends AbstractController
         ]);
     }
 
-    #[Route('/employeur/{id}/delete', name: 'delete_employeur')]
+    #[Route('/admin/employeur/{id}/delete', name: 'delete_employeur')]
     public function delete(Employeur $employeur, EntityManagerInterface $entityManager)
     {
         $entityManager->remove($employeur);
         $entityManager->flush();
 
         return  $this->redirectToRoute('app_employeur');
+    }
+
+    #[Route('/employeur/{id}', name: 'show_employeur')]
+    public function show(Employeur $employeur): Response
+    {
+        return $this->render('employeur/show.html.twig', [
+            'employeur' =>  $employeur
+        ]);
     }
 }

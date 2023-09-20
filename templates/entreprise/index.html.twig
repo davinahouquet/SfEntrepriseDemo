@@ -9,7 +9,7 @@
 
     {% for entreprise in entreprises %}
         {# <a href=""><b>{{ entreprise.raisonSociale }}</b>{{ ' (' ~entreprise.cp~' '~entreprise.ville~') ' }} </a><br> #}
-        <a href="{{path('show_entreprise', {'id': entreprise.id} )}}"><b>{{ entreprise.raisonSociale }}</b></a>
+        <a href="{{path('show_entreprise', {'id': entreprise.id} )}}"><b>{{ entreprise.raisonSociale }}</b></a><br>
         {# <b>{{ entreprise }}</b><br> Si __toString #}
 
         {% if is_granted('ROLE_ADMIN') %}
